@@ -10,6 +10,14 @@
 
 ?>
 
+<?php
+
+  $std = new Student();
+
+?>
+
+
+
 
 <section class = "main-left">
 	
@@ -56,39 +64,24 @@
         <th>Action</th>
      </tr>
 
+      <?php
+
+        $i = 0;
+        foreach ($std->readAll() as $key => $value) {
+        	$i++;
+      ?>
      <tr>
-     	<td>1</td>
-     	<td>Arif</td>
-     	<td>CSE</td>
-     	<td>20</td>
+     	<td><?php echo $i; ?></td>
+     	<td><?php  echo $value['name']; ?></td>
+     	<td><?php echo $value['department'] ?></td>
+     	<td><?php echo $value['age'] ?></td>
      	<td>
      		<a href="#">Edit</a>||
-     		<a href="#">Delet</a>
+     		<a href="#">Delete</a>
      	</td>
      </tr>
-
-     <tr>
-     	<td>2</td>
-     	<td>Sabbir</td>
-     	<td>CSE</td>
-     	<td>20</td>
-     	<td>
-     		<a href="#">Edit</a>||
-     		<a href="#">Delet</a>
-     	</td>
-     </tr>
-
-     <tr>
-     	<td>3</td>
-     	<td>Rubel</td>
-     	<td>CSE</td>
-     	<td>20</td>
-     	<td>
-     		<a href="#">Edit</a>||
-     		<a href="#">Delet</a>
-     	</td>
-     </tr>
-
+  <?php   }  ?>
+     
    </table>
 
 </section>
