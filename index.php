@@ -10,18 +10,32 @@
 
 ?>
 
-<?php
-
-  $std = new Student();
-
-?>
-
-
-
 
 <section class = "main-left">
 	
-   <form action = "" method="">
+	<?php
+
+      $std = new Student();
+      if(isset($_POST['submit']))
+      {
+      	 $name = $_POST['name'];
+      	 $dept = $_POST['department'];
+      	 $age  = $_POST['age'];
+
+      	 $std->setName($name);
+      	 $std->setDept($dept);
+      	 $std->setAge($age);
+
+      	 if($std->insert())
+      	 {
+      	 	echo "<span style = 'color:green; font-weight:bold;'>Data inserted successfully...</span>";
+      	 }
+      }
+      
+    ?>
+
+
+   <form action = "" method = "post">
    	  
    	  <table>
    	  	 
