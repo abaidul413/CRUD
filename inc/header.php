@@ -39,5 +39,5 @@
 		    <section class="mainContent">
 
 		    <section class="subject">
-		    	<p>CRUD with PDO - Templet & Database design <span style="float: right;"><a href="index.php">Creat New</a></span></p>
+		    	<p>CRUD with PDO - Templet & Database design <span style="float: right; background:#fff; font-weight: bold;color: green; text-align: center;"><a href="index.php">For Student</a> || <a href="teacher.php">For Teacher</a></span></p>
 		    </section>
