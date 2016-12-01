@@ -8,23 +8,6 @@ include"DB.php";
     private $dept;
     private $age;
 
-    public function readById($id)
-    {
-    	$sql = "select * from $this->table where id = :id";
-    	$stmt = DB::prepare($sql);
-    	$stmt->bindParam(':id', $id);
-    	$stmt->execute();
-    	return $stmt->fetch();
-    }
-    
-     public function  readAll()
-     {
-        $sql = "select * from $this->table";
-        $stmt = DB::prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll();
-     }
-
      public function setName($name)
      {
      	$this->name = $name;
@@ -40,6 +23,22 @@ include"DB.php";
      	$this->age = $age;
      }
 
+     public function  readAll()
+     {
+        $sql = "select * from $this->table";
+        $stmt = DB::prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+     }
+
+    public function readById($id)
+    {
+    	$sql = "select * from $this->table where id = :id";
+    	$stmt = DB::prepare($sql);
+    	$stmt->bindParam(':id', $id);
+    	$stmt->execute();
+    	return $stmt->fetch();
+    }
 
      public function insert()
      {

@@ -16,7 +16,8 @@
 	<?php
 
       $std = new Student();
-      if(isset($_POST['submit']))
+
+     if(isset($_POST['submit']))
       {
       	 $name = $_POST['name'];
       	 $dept = $_POST['department'];
@@ -36,25 +37,8 @@
 
     <?php
 
-      if(isset($_POST['edit']))
-      {
-      	 $name = $_POST['name'];
-      	 $dept = $_POST['department'];
-      	 $age  = $_POST['age'];
-      	 $id  = $_POST['id'];
-
-      	 $std->setName($name);
-      	 $std->setDept($dept);
-      	 $std->setAge($age);
-
-		  if($std->update($id))
-      	 {
-      	 	echo "<span style = 'color:green; font-weight:bold;'>Data Updated successfully...</span>";
-      	 }
-      }
-      
-       if (isset($_GET['action']) && $_GET['action'] == 'delete'){
-      	
+       if (isset($_GET['action']) && $_GET['action'] == 'delete')
+         {
             $id = $_GET['id'];
            if($std->delete($id))
            {
@@ -62,13 +46,30 @@
            }
          }
 
+	     if(isset($_POST['edit']))
+	      {
+	      	 $name = $_POST['name'];
+	      	 $dept = $_POST['department'];
+	      	 $age  = $_POST['age'];
+	      	 $id  = $_POST['id'];
+
+	      	 $std->setName($name);
+	      	 $std->setDept($dept);
+	      	 $std->setAge($age);
+
+			if($std->update($id))
+	      	 {
+	      	 	echo "<span style = 'color:green; font-weight:bold;'>Data Updated successfully...</span>";
+	      	 }
+	      }
+
 
       if (isset($_GET['action']) && $_GET['action'] == 'edit'){
       	
             $id = $_GET['id'];
            $result = $std->readById($id);
 
-    ?>
+     ?>
 	    <form action = "" method = "post">
 	   	  <table>
 	   	  	  <input type="hidden" name = "id" value ="<?php echo $result['id'];?>" required="1">
@@ -156,27 +157,11 @@
      	  <?php echo "<a href = 'index.php?action=delete&id=".$value['id']."' onClick = 'return confirm(\" Are you sure you want to Delete!!!\")'>Delete</a>";?>
      	</td>
      </tr>
-  <?php   }  ?>
+  <?php } ?>
      
    </table>
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
