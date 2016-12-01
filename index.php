@@ -34,6 +34,59 @@
       
     ?>
 
+    <?php
+
+      if (isset($_GET['action']) && $_GET['action'] == 'edit'){
+      	
+            $id = $_GET['id'];
+           $result = $std->readById($id);
+
+           
+      if(isset($_POST['edit']))
+      {
+      	 $name = $_POST['name'];
+      	 $dept = $_POST['department'];
+      	 $age  = $_POST['age'];
+      	 $id  = $_POST['id'];
+
+      	 $std->setName($name);
+      	 $std->setDept($dept);
+      	 $std->setAge($age);
+
+		  if($std->update($id))
+      	 {
+      	 	echo "<span style = 'color:green; font-weight:bold;'>Data Updated successfully...</span>";
+      	 }
+      }
+
+       ?>
+	    <form action = "" method = "post">
+	   	  <table>
+	   	  	  <input type="hidden" name = "id" value ="<?php echo $result['id'];?>" required="1">
+	   	  	   <tr>
+	   	  	   	  <td>Name : </td>
+	   	  	   	  <td><input type="text" name = "name" value ="<?php echo $result['name'];?>" required="1"></td>
+	   	  	   </tr>
+
+	   	  	   <tr>
+	   	  	   	  <td>Department : </td>
+	   	  	   	  <td><input type="text" name = "department" value ="<?php echo $result['department'];?>" required="1"></td>
+	   	  	   </tr>
+
+	   	  	   <tr>
+	   	  	   	  <td>Age : </td>
+	   	  	   	  <td><input type="text" name = "age" value ="<?php echo $result['age'];?>" required="1"></td>
+	   	  	   </tr>
+
+	   	  	   <tr>
+	   	  	   	  <td></td>
+	   	  	   	  <td><input type="submit" name = "edit" value="Submit"></td>
+	   	  	   </tr>
+
+	   	  </table>
+	   </form>
+
+    <?php  }else { ?>
 
    <form action = "" method = "post">
    	  
@@ -62,7 +115,7 @@
    	  </table>
 
    </form>
-
+ <?php } ?>
 </section>
 
 
@@ -90,7 +143,7 @@
      	<td><?php echo $value['department'] ?></td>
      	<td><?php echo $value['age'] ?></td>
      	<td>
-     		<a href="#">Edit</a>||
+     	   <?php echo "<a href ='index.php?action=edit&id=".$value['id']."'>Edit</a>"; ?> ||
      		<a href="#">Delete</a>
      	</td>
      </tr>

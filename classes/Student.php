@@ -7,6 +7,15 @@ include"DB.php";
     private $name;
     private $dept;
     private $age;
+
+    public function readById($id)
+    {
+    	$sql = "select * from $this->table where id = :id";
+    	$stmt = DB::prepare($sql);
+    	$stmt->bindParam(':id', $id);
+    	$stmt->execute();
+    	return $stmt->fetch();
+    }
     
      public function  readAll()
      {
@@ -39,6 +48,17 @@ include"DB.php";
      	$stmt->bindParam(':name', $this->name);
      	$stmt->bindParam(':dept', $this->dept);
      	$stmt->bindParam(':age', $this->age);
+     	return $stmt->execute();
+     }
+
+     public function update($id)
+     {
+     	$sql = "update $this->table set name = :name, department = :dept, age =:age where id = :id ";
+     	$stmt = DB::prepare($sql);
+     	$stmt->bindParam(':name', $this->name);
+     	$stmt->bindParam(':dept', $this->dept);
+     	$stmt->bindParam(':age', $this->age);
+     	$stmt->bindParam(':id', $id);
      	return $stmt->execute();
      }
 
