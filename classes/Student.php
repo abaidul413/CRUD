@@ -62,6 +62,15 @@ include"DB.php";
      	return $stmt->execute();
      }
 
+     public function delete($id)
+     {
+     	$sql = "DELETE from $this->table where id = :id";
+     	$stmt = DB::prepare($sql);
+     	$stmt->bindParam(':id', $id);
+     	return $stmt->execute();
+
+     }
+
   }
 
 ?>

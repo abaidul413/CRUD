@@ -36,12 +36,6 @@
 
     <?php
 
-      if (isset($_GET['action']) && $_GET['action'] == 'edit'){
-      	
-            $id = $_GET['id'];
-           $result = $std->readById($id);
-
-           
       if(isset($_POST['edit']))
       {
       	 $name = $_POST['name'];
@@ -58,8 +52,23 @@
       	 	echo "<span style = 'color:green; font-weight:bold;'>Data Updated successfully...</span>";
       	 }
       }
+      
+       if (isset($_GET['action']) && $_GET['action'] == 'delete'){
+      	
+            $id = $_GET['id'];
+           if($std->delete($id))
+           {
+           	  echo "<span style = 'color:green; font-weight:bold;'>Data Deleted successfully...</span>";
+           }
+         }
 
-       ?>
+
+      if (isset($_GET['action']) && $_GET['action'] == 'edit'){
+      	
+            $id = $_GET['id'];
+           $result = $std->readById($id);
+
+    ?>
 	    <form action = "" method = "post">
 	   	  <table>
 	   	  	  <input type="hidden" name = "id" value ="<?php echo $result['id'];?>" required="1">
@@ -143,8 +152,8 @@
      	<td><?php echo $value['department'] ?></td>
      	<td><?php echo $value['age'] ?></td>
      	<td>
-     	   <?php echo "<a href ='index.php?action=edit&id=".$value['id']."'>Edit</a>"; ?> ||
-     		<a href="#">Delete</a>
+     	  <?php echo "<a href ='index.php?action=edit&id=".$value['id']."'>Edit</a>"; ?> ||
+     	  <?php echo "<a href = 'index.php?action=delete&id=".$value['id']."' onClick = 'return confirm(\" Are you sure you want to Delete!!!\")'>Delete</a>";?>
      	</td>
      </tr>
   <?php   }  ?>
